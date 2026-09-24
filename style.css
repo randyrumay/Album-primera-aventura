@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IM+Fell+English:ital@0;1&display=swap');
+
+:root { --ink:#3a2b1e; --paper:#e9d3a7; }
+* { box-sizing:border-box; }
+html,body { margin:0; width:100%; height:100%; overflow:hidden; background:#17120d; }
+body { font-family:"Cormorant Garamond", Georgia, serif; color:var(--ink); }
+#album { width:100vw; height:100vh; position:relative; overflow:hidden; background:#20180f; }
+.page { position:absolute; inset:0; display:none; overflow:hidden; }
+.page.active { display:block; animation:pageIn .55s ease both; }
+.page-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; user-select:none; }
+@keyframes pageIn { from { opacity:0; transform:scale(1.015); } to { opacity:1; transform:scale(1); } }
+
+.cover-title {
+  position:absolute; left:50%; top:52%; transform:translate(-50%,-50%);
+  text-align:center; width:min(55vw,760px); color:#ead6ad;
+  text-shadow:0 2px 7px #120d09;
+  pointer-events:none;
+}
+.cover-kicker { font:600 clamp(20px,2.3vw,34px)/1 "IM Fell English",serif; letter-spacing:.18em; }
+.cover-main { font:700 clamp(42px,6vw,88px)/.82 "IM Fell English",serif; letter-spacing:.05em; margin-top:12px; }
+.cover-sub { margin-top:26px; font:italic clamp(16px,1.7vw,25px)/1.2 "Cormorant Garamond",serif; }
+
+.open-btn {
+  position:absolute; left:50%; bottom:8%; transform:translateX(-50%);
+  border:1px solid rgba(244,225,186,.65); background:rgba(38,27,17,.72);
+  color:#f4e4c3; padding:12px 24px; border-radius:2px;
+  letter-spacing:.14em; font:600 13px Georgia,serif; cursor:pointer;
+  box-shadow:0 8px 25px rgba(0,0,0,.22); backdrop-filter:blur(3px);
+}
+.open-btn:hover { background:rgba(38,27,17,.9); }
+
+.photo-slot { position:absolute; overflow:hidden; background:transparent; }
+.photo-slot img { width:100%; height:100%; object-fit:cover; display:block; }
+.p2  { left:30.7%; top:8.7%; width:34.0%; height:75.2%; }
+.p3a { left:61.4%; top:9.4%; width:29.5%; height:41.0%; }
+.p3b { left:5.2%; top:56.0%; width:36.2%; height:37.0%; }
+.p4a { left:59.9%; top:8.5%; width:31.2%; height:44.0%; }
+.p4b { left:13.7%; top:51.0%; width:39.4%; height:42.0%; }
+.p5a { left:4.8%; top:9.8%; width:39.0%; height:40.0%; }
+.p5b { left:53.8%; top:7.8%; width:37.5%; height:47.0%; }
+.p7  { left:7.3%; top:8.0%; width:46.7%; height:47.0%; }
+
+.note {
+  position:absolute; font-family:"IM Fell English",Georgia,serif;
+  color:#59432b; text-align:center; font-size:clamp(14px,1.5vw,22px);
+  line-height:1.15;
+}
+.note strong,.note span { display:block; }
+.note-p2 { left:8%; bottom:10%; width:25%; transform:rotate(-1deg); }
+.note-p3 { right:8%; bottom:12%; width:35%; transform:rotate(-1deg); }
+.note-p4 { right:8%; bottom:10%; width:29%; transform:rotate(1deg); font-style:italic; }
+.postcard-note { right:7%; bottom:12%; width:35%; transform:rotate(-1deg); }
+.note strong { font-size:1.1em; margin-bottom:6px; }
+
+.story {
+  position:absolute; left:50%; top:56%; transform:translate(-50%,-50%);
+  width:min(38%,520px); text-align:center; color:#57432f;
+}
+.story-title { font:600 clamp(34px,4.2vw,65px) "IM Fell English",serif; margin-bottom:16px; }
+.story-text { font:italic clamp(19px,2.2vw,31px)/1.25 "Cormorant Garamond",serif; }
+
+.final { background:radial-gradient(circle at 50% 42%, #ead5ac 0, #c9aa76 70%, #a88454 100%); }
+.final:before {
+  content:""; position:absolute; inset:4%; border:1px solid rgba(74,50,28,.4);
+  box-shadow:inset 0 0 0 10px rgba(255,244,215,.15);
+}
+.final-paper {
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:min(82%,900px); text-align:center; color:#4b3725;
+}
+.final-small { letter-spacing:.22em; font:600 13px Georgia,serif; opacity:.7; }
+.final h1 { font:600 clamp(40px,5.4vw,78px)/.98 "IM Fell English",serif; margin:22px 0 20px; }
+.final p { font:italic clamp(20px,2.1vw,30px) "Cormorant Garamond",serif; }
+.final-line { width:90px; height:1px; background:rgba(74,50,28,.5); margin:32px auto 18px; }
+.final-mark { font-size:26px; opacity:.65; }
+
+.nav {
+  position:absolute; z-index:20; left:50%; bottom:18px; transform:translateX(-50%);
+  display:flex; align-items:center; gap:15px; color:#f5e4c2;
+  opacity:.78; transition:.2s;
+}
+.nav button,.music {
+  border:0; width:38px; height:38px; border-radius:50%;
+  background:rgba(28,20,13,.55); color:#f6e6c8; cursor:pointer;
+  font:30px Georgia,serif; line-height:1;
+}
+.nav button:hover,.music:hover { background:rgba(28,20,13,.78); }
+#counter { min-width:45px; text-align:center; font:12px Georgia,serif; letter-spacing:.08em; }
+.music { position:absolute; z-index:20; right:18px; bottom:18px; font-size:20px; }
+.music.playing { box-shadow:0 0 0 3px rgba(239,216,174,.22); }
+
+@media (max-aspect-ratio: 3/4) {
+  .page-bg { object-fit:cover; }
+  .cover-title { width:88vw; top:45%; }
+  .cover-main { font-size:clamp(40px,12vw,72px); }
+  .cover-kicker { font-size:18px; }
+  .cover-sub { font-size:17px; margin-top:18px; }
+  .open-btn { bottom:11%; }
+  .note { font-size:15px; }
+  .note-p2 { left:9%; width:82%; bottom:5%; }
+  .note-p3 { right:7%; width:42%; bottom:5%; }
+  .note-p4,.postcard-note { right:7%; width:40%; bottom:5%; }
+  .story { width:70%; top:57%; }
+  .story-title { font-size:40px; }
+  .story-text { font-size:21px; }
+  .nav { bottom:10px; }
+  .music { bottom:10px; right:10px; }
+}
