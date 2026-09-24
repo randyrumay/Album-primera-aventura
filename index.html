@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#d9c39a">
+<title>Nuestra Primera Aventura</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <main id="book" aria-label="Álbum Nuestra Primera Aventura">
+    <section class="page active" data-page="0" data-bg="assets/template/page-02.jpg">
+      <div class="cover-note">
+        <div class="small">UN PEQUEÑO ÁLBUM DE RECUERDOS</div>
+        <h1>NUESTRA<br>PRIMERA<br>AVENTURA</h1>
+        <p>Una historia que recién comienza.</p>
+        <button class="paper-btn" data-action="next">ABRIR EL ÁLBUM</button>
+      </div>
+    </section>
+
+    <section class="page" data-page="1" data-bg="assets/template/page-01.jpg">
+      <div class="note note-a">
+        <h2>El comienzo</h2>
+        <p>Hay días que parecen pequeños, pero terminan convirtiéndose en buenos recuerdos.</p>
+      </div>
+      <div class="note note-b">
+        <p class="hand">Nuestra primera aventura<br>merecía quedar guardada aquí.</p>
+      </div>
+    </section>
+
+    <section class="page" data-page="2" data-bg="assets/template/page-04.jpg">
+      <div class="photo slot s01"><img src="assets/photos/01.jpg"><span>FOTO 01</span></div>
+      <div class="photo slot s02"><img src="assets/photos/02.jpg"><span>FOTO 02</span></div>
+      <div class="photo slot s03"><img src="assets/photos/03.jpg"><span>FOTO 03</span></div>
+      <div class="note note-c"><h2>Un buen momento</h2><p>De esos que se disfrutan sin necesidad de planear demasiado.</p></div>
+    </section>
+
+    <section class="page" data-page="3" data-bg="assets/template/page-05.jpg">
+      <div class="photo slot s04"><img src="assets/photos/04.jpg"><span>FOTO 04</span></div>
+      <div class="photo slot s05"><img src="assets/photos/05.jpg"><span>FOTO 05</span></div>
+      <div class="photo slot s06"><img src="assets/photos/06.jpg"><span>FOTO 06</span></div>
+      <div class="caption c1">Risas, conversaciones<br>y momentos inesperados.</div>
+    </section>
+
+    <section class="page" data-page="4" data-bg="assets/template/page-06.jpg">
+      <div class="photo slot s07"><img src="assets/photos/07.jpg"><span>FOTO 07</span></div>
+      <div class="photo slot s08"><img src="assets/photos/08.jpg"><span>FOTO 08</span></div>
+      <div class="photo slot s09"><img src="assets/photos/09.jpg"><span>FOTO 09</span></div>
+      <div class="caption c2">Pequeños detalles<br>que vale la pena recordar.</div>
+    </section>
+
+    <section class="page" data-page="5" data-bg="assets/template/page-07.jpg">
+      <div class="chapter">
+        <div class="chapter-small">CAPÍTULO I</div>
+        <h2>LO QUE<br>ME GUSTARÍA<br>RECORDAR</h2>
+        <p>No hace falta que una historia sea enorme para convertirse en especial.</p>
+      </div>
+    </section>
+
+    <section class="page" data-page="6" data-bg="assets/template/page-08.jpg">
+      <div class="photo slot s10"><img src="assets/photos/10.jpg"><span>FOTO 10</span></div>
+      <div class="note note-d"><h2>Este momento</h2><p>Una página para guardar una de esas escenas que merecen repetirse.</p></div>
+    </section>
+
+    <section class="page" data-page="7" data-bg="assets/template/page-09.jpg">
+      <div class="photo slot s11"><img src="assets/photos/11.jpg"><span>FOTO 11</span></div>
+      <div class="photo slot s12"><img src="assets/photos/12.jpg"><span>FOTO 12</span></div>
+      <div class="caption c3">Y aquí dejamos un espacio<br>para la próxima aventura.</div>
+    </section>
+
+    <section class="page" data-page="8" data-bg="assets/template/page-03.jpg">
+      <div class="note final-note">
+        <div class="small">ANTES DE CERRAR ESTE ÁLBUM...</div>
+        <h2>Gracias por compartir<br>este día conmigo.</h2>
+        <p>Lo mejor de una primera aventura es saber que puede haber otra.</p>
+        <button class="paper-btn" data-action="next">CONTINUAR</button>
+      </div>
+    </section>
+
+    <section class="page" data-page="9" data-bg="assets/template/page-10.jpg">
+      <div class="closing">
+        <h2>Gracias por la aventura<br>y las risas, Karyn.</h2>
+        <p>Espero que sea la primera de muchas buenas historias.</p>
+        <div class="qr-card"><img src="assets/qr.png" alt="Código QR del álbum"><span>Guarda este recuerdo</span></div>
+      </div>
+    </section>
+  </main>
+
+  <button id="prev" class="nav prev" aria-label="Página anterior">‹</button>
+  <button id="next" class="nav next" aria-label="Página siguiente">›</button>
+  <div class="progress" id="progress">1 / 10</div>
+  <button id="music" class="music" aria-label="Activar música">♫</button>
+  <audio id="audio" preload="auto" loop src="assets/audio/the-door-teddy-swims.mp3"></audio>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
