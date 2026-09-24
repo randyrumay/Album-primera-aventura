@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5b3928">
+  <title>Nuestra primera aventura</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient"></div>
+
+  <main class="album-shell">
+    <section class="cover-screen" id="coverScreen">
+      <div class="cover-book">
+        <div class="cover-spine"></div>
+        <div class="cover-content">
+          <p class="small-label">ÁLBUM FOTOGRÁFICO</p>
+          <h1>NUESTRA<br><span>PRIMERA</span><br>AVENTURA</h1>
+          <div class="world-mark">✦</div>
+          <p class="cover-subtitle">Un pequeño recuerdo de un día que quiero guardar.</p>
+          <button class="open-btn" id="openAlbum">ABRIR EL ÁLBUM</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="book" id="book" aria-label="Álbum fotográfico">
+      <header class="topbar">
+        <div class="music-control">
+          <button id="musicBtn" class="icon-btn" aria-label="Pausar música">♫</button>
+          <span id="musicText">The Door · Teddy Swims</span>
+        </div>
+        <div class="counter"><span id="pageNumber">1</span> / 8</div>
+      </header>
+
+      <div class="page" id="page">
+        <!-- Página 1 -->
+        <article class="spread active" data-page="1">
+          <div class="paper">
+            <div class="tape tape-a"></div>
+            <div class="photo-frame large">
+              <img src="assets/photos/01.jpg" alt="Foto principal" onerror="this.classList.add('missing')">
+              <span class="photo-placeholder">COLOCA AQUÍ<br>TU FOTO DE PORTADA</span>
+            </div>
+            <div class="photo-frame medium">
+              <img src="assets/photos/02.jpg" alt="Foto" onerror="this.classList.add('missing')">
+              <span class="photo-placeholder">TU FOTO</span>
+            </div>
+            <div class="note">
+              <h2>El comienzo</h2>
+              <p>Hay aventuras que empiezan sin saber cuánto van a significar.</p>
+            </div>
+            <div class="stamp">RECUERDO<br>01</div>
+          </div>
+        </article>
+
+        <!-- Página 2 -->
+        <article class="spread" data-page="2">
+          <div class="paper centered">
+            <div class="travel-label">MY ADVENTURE BOOK</div>
+            <h2 class="chapter">CAPÍTULO I</h2>
+            <h1 class="big-title">EL DÍA<br>QUE EMPEZÓ<br>LA AVENTURA</h1>
+            <div class="route">• ───────── ✦ ───────── •</div>
+            <p class="chapter-text">Una fecha, un lugar y dos personas descubriendo qué historia podía salir de ahí.</p>
+            <div class="date-card">
+              <span>FECHA</span>
+              <strong>____ / ____ / ______</strong>
+            </div>
+          </div>
+        </article>
+
+        <!-- Página 3 -->
+        <article class="spread" data-page="3">
+          <div class="paper">
+            <div class="section-title">PRIMERA PARADA</div>
+            <div class="polaroid">
+              <img src="assets/photos/03.jpg" alt="Primera parada" onerror="this.classList.add('missing')">
+              <span class="photo-placeholder">FOTO DEL LUGAR</span>
+              <p>“Aquí comenzó una parte de nuestra historia.”</p>
+            </div>
+            <div class="side-note">
+              <span class="number">01</span>
+              <h2>El lugar</h2>
+              <p>Escribe aquí una pequeña historia sobre dónde estuvieron, qué hicieron o qué fue lo primero que llamó tu atención.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Página 4 -->
+        <article class="spread" data-page="4">
+          <div class="paper">
+            <div class="section-title">PEQUEÑOS MOMENTOS</div>
+            <div class="grid-photos">
+              <div class="mini-polaroid rotate-left">
+                <img src="assets/photos/04.jpg" alt="Momento 1" onerror="this.classList.add('missing')">
+                <span class="photo-placeholder">FOTO</span>
+                <p>Ese momento.</p>
+              </div>
+              <div class="mini-polaroid rotate-right">
+                <img src="assets/photos/05.jpg" alt="Momento 2" onerror="this.classList.add('missing')">
+                <span class="photo-placeholder">FOTO</span>
+                <p>Otra sonrisa.</p>
+              </div>
+              <div class="mini-polaroid rotate-right-2">
+                <img src="assets/photos/06.jpg" alt="Momento 3" onerror="this.classList.add('missing')">
+                <span class="photo-placeholder">FOTO</span>
+                <p>Algo para recordar.</p>
+              </div>
+            </div>
+            <div class="hand-note">A veces lo mejor de una aventura son las cosas que no estaban planeadas.</div>
+          </div>
+        </article>
+
+        <!-- Página 5 -->
+        <article class="spread" data-page="5">
+          <div class="paper split">
+            <div class="split-photo">
+              <img src="assets/photos/07.jpg" alt="Foto especial" onerror="this.classList.add('missing')">
+              <span class="photo-placeholder">FOTO ESPECIAL</span>
+            </div>
+            <div class="split-copy">
+              <span class="number">02</span>
+              <h2>Lo que me llevo</h2>
+              <p>Escribe aquí aquello que más te gustó de ese día: una conversación, una mirada, una ocurrencia, una caminata o simplemente haber compartido el momento.</p>
+              <blockquote>“Hay recuerdos que se quedan mucho después de que termina el día.”</blockquote>
+            </div>
+          </div>
+        </article>
+
+        <!-- Página 6 -->
+        <article class="spread" data-page="6">
+          <div class="paper">
+            <div class="section-title">POSTALES DE LA AVENTURA</div>
+            <div class="postcard">
+              <div class="postcard-image">
+                <img src="assets/photos/08.jpg" alt="Postal" onerror="this.classList.add('missing')">
+                <span class="photo-placeholder">TU FOTO</span>
+              </div>
+              <div class="postcard-text">
+                <h2>Saludos desde nuestro recuerdo</h2>
+                <p>Querido futuro:</p>
+                <p>Ojalá cuando volvamos a mirar estas fotos podamos recordar exactamente lo que se sentía estar ahí.</p>
+                <p class="signature">— Nosotros</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Página 7 -->
+        <article class="spread" data-page="7">
+          <div class="paper centered">
+            <div class="section-title">UNA ÚLTIMA PÁGINA</div>
+            <div class="big-quote">“Y esto<br>recién<br>comienza.”</div>
+            <div class="line"></div>
+            <p class="final-note">Gracias por la aventura y las risas, Karyn.</p>
+            <p class="final-small">Espero que sea la primera de muchas buenas historias.</p>
+          </div>
+        </article>
+
+        <!-- Página 8 -->
+        <article class="spread" data-page="8">
+          <div class="paper centered ending">
+            <div class="world-mark">✦</div>
+            <h1>GRACIAS POR<br>LA AVENTURA</h1>
+            <p>Ahora empieza la siguiente.</p>
+            <div class="signature-line">Con cariño, __________________</div>
+            <div class="qr-mini">
+              <div id="qrPreview">QR</div>
+              <small>Escanea para volver a este álbum</small>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <nav class="controls">
+        <button id="prevBtn" class="nav-btn" disabled>← ANTERIOR</button>
+        <button id="nextBtn" class="nav-btn">SIGUIENTE →</button>
+      </nav>
+    </section>
+  </main>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="assets/audio/the-door-teddy-swims.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
