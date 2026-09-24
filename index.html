@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5c4635">
+  <title>Nuestra primera aventura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --paper:#eee4cf;
+  --paper2:#e4d6b8;
+  --ink:#33291f;
+  --brown:#624a35;
+  --gold:#a5844e;
+  --shadow:rgba(47,34,22,.22);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#2d241d;color:var(--ink);font-family:"Montserrat",sans-serif}
+body{overflow-x:hidden}
+button{font:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E")}
+.screen{min-height:100vh}
+.cover{display:grid;place-items:center;padding:30px;background:radial-gradient(circle at 50% 35%,#7a6046,#3a2b20 72%);color:#f4ead7}
+.cover-inner{width:min(760px,92vw);min-height:82vh;padding:9vh 9vw;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.22);box-shadow:0 20px 60px rgba(0,0,0,.35);background:linear-gradient(135deg,rgba(110,79,49,.7),rgba(49,37,28,.82));position:relative}
+.cover-inner:before,.cover-inner:after{content:"";position:absolute;inset:18px;border:1px solid rgba(244,234,215,.2);pointer-events:none}
+.cover-inner:after{inset:28px;border-style:dashed;opacity:.5}
+.small-label,.tiny-label{font-size:11px;letter-spacing:.24em;font-weight:600}
+.spark{margin:22px 0;font-size:18px;color:#d8bb7b}
+.spark.big{font-size:28px;margin:20px 0}
+h1,h2{font-family:"Cormorant Garamond",serif}
+.cover h1{font-size:clamp(48px,9vw,92px);line-height:.82;margin:10px 0 30px;letter-spacing:.02em;font-weight:600}
+.cover p{font-family:"Cormorant Garamond",serif;font-size:23px;max-width:520px}
+.primary-btn,.nav-btn,.music-btn{border:0;cursor:pointer}
+.primary-btn{margin-top:24px;padding:14px 25px;background:#ead8ad;color:#33291f;font-weight:700;letter-spacing:.12em;box-shadow:0 8px 18px rgba(0,0,0,.22);transition:.2s}
+.primary-btn:hover{transform:translateY(-2px)}
+.music-note{margin-top:24px;font-size:11px;letter-spacing:.1em;opacity:.75}
+.hidden{display:none!important}
+.album{min-height:100vh;background:#c9b18a;padding:18px 16px 28px}
+.topbar{max-width:1100px;margin:0 auto 12px;display:flex;align-items:center;justify-content:space-between;color:#f5ead4}
+.book-title{font-size:11px;letter-spacing:.2em;font-weight:700}
+.counter{font-size:12px}
+.music-btn{width:40px;height:40px;border-radius:50%;background:#eee1c6;color:#493725;box-shadow:0 3px 10px var(--shadow)}
+.pages{max-width:1100px;margin:auto;position:relative}
+.page{display:none;min-height:calc(100vh - 150px);background:var(--paper);box-shadow:0 16px 40px var(--shadow);overflow:hidden;position:relative}
+.page.active{display:block;animation:pageIn .38s ease}
+@keyframes pageIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+.page:before{content:"";position:absolute;inset:12px;border:1px solid rgba(98,74,53,.2);pointer-events:none}
+.page-inner{min-height:calc(100vh - 150px);padding:clamp(30px,5vw,65px);position:relative}
+.opening{display:grid;grid-template-columns:1.2fr .9fr;gap:35px;align-items:center}
+.photo-frame{background:#d7c8a9;border:9px solid #f7f1e3;box-shadow:0 10px 22px var(--shadow);position:relative;overflow:hidden;min-height:170px;display:grid;place-items:center}
+.photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-frame span{position:absolute;color:#765f45;font-size:12px;letter-spacing:.14em;text-align:center}
+.photo-frame.empty{background:repeating-linear-gradient(135deg,#d8c8a7 0,#d8c8a7 12px,#d1bf9d 12px,#d1bf9d 24px)}
+.photo-frame.large{height:52vh;transform:rotate(-1.2deg)}
+.photo-frame.small{height:230px;align-self:end;transform:rotate(3deg);grid-column:2}
+.opening-copy{padding:10px}
+.opening-copy h2,.chapter h2,.two-col h2,.page-inner>h2{font-size:clamp(46px,6vw,76px);line-height:.9;margin:20px 0}
+.opening-copy p,.chapter p,.two-col p,.closing p{font-family:"Cormorant Garamond",serif;font-size:23px;line-height:1.25}
+.rule{height:1px;background:var(--gold);margin:25px 0;width:75%}
+.hand{font-style:italic;color:#715a43}
+.chapter{max-width:850px;margin:auto}
+.chapter h2{font-size:clamp(54px,8vw,100px);margin-top:25px}
+.ornament{text-align:center;color:var(--gold);margin:25px 0;font-size:20px}
+.date-line{margin:25px 0;font-size:12px;letter-spacing:.15em}
+.wide{height:38vh}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.tall{height:65vh;transform:rotate(1.2deg)}
+.quote{margin-top:45px;border-left:3px solid var(--gold);padding-left:20px;font-style:italic}
+.polaroid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;margin-top:40px}
+.polaroid{background:#faf6ea;padding:10px 10px 18px;box-shadow:0 8px 18px var(--shadow)}
+.polaroid .photo-frame{height:240px;border-width:5px;box-shadow:none}
+.polaroid p{text-align:center;font-family:"Cormorant Garamond",serif;font-size:20px;margin:9px 0 0}
+.rotate-left{transform:rotate(-3deg)}.rotate-right{transform:rotate(3deg)}
+.stamp{display:inline-block;margin-top:35px;padding:14px;border:2px solid var(--gold);color:var(--brown);font-size:12px;letter-spacing:.15em;transform:rotate(-5deg)}
+.postcard{background:#eee0c4}
+.postcard-head{display:flex;justify-content:space-between;border-bottom:1px solid var(--gold);padding-bottom:12px;font-size:12px;letter-spacing:.18em}
+.postcard-body{display:grid;grid-template-columns:1.2fr 1fr;gap:45px;margin-top:40px}
+.postcard-photo{height:55vh}
+.postcard-lines{font-family:"Cormorant Garamond",serif;font-size:24px}
+.lines{height:180px;background:repeating-linear-gradient(to bottom,transparent 0 34px,rgba(98,74,53,.3) 35px 36px)}
+.signature{font-size:16px!important;font-style:italic}
+.final-photo{padding:0;background:#3b3027}
+.cinematic{position:absolute;inset:0;height:100%;border:0;box-shadow:none;background:#4c3d30}
+.overlay-copy{position:absolute;left:8%;bottom:9%;color:#f5ead7;max-width:600px;text-shadow:0 3px 12px #000}
+.overlay-copy h2{font-size:clamp(55px,8vw,100px);line-height:.85;margin:18px 0}
+.overlay-copy p{font-family:"Cormorant Garamond",serif;font-size:23px}
+.closing{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.closing h2{font-size:clamp(46px,6vw,78px);line-height:.95;margin:0}
+.closing-sub{max-width:600px}
+.signature-line{width:180px;height:1px;background:var(--gold);margin:35px 0 12px}
+.signature span{font-family:"Cormorant Garamond",serif;font-size:30px}
+.qr-placeholder{margin-top:30px;opacity:.65}
+.qr-box{width:75px;height:75px;border:5px solid var(--brown);display:grid;place-items:center;font-weight:700;margin:auto}
+.qr-placeholder small{display:block;margin-top:8px;font-size:8px;letter-spacing:.1em}
+.navigation{max-width:1100px;margin:13px auto 0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.nav-btn{padding:11px 14px;background:#eee1c6;color:#493725;font-size:11px;letter-spacing:.08em;font-weight:700}
+#nextBtn{justify-self:end}.dots{display:flex;gap:6px;justify-content:center}.dot{width:7px;height:7px;border-radius:50%;background:#e5d4b3;opacity:.55}.dot.active{opacity:1;transform:scale(1.35)}
+.swipe-hint{text-align:center;color:#f5ead7;font-size:9px;letter-spacing:.12em;margin-top:9px;opacity:.7}
+@media(max-width:700px){
+  .cover{padding:12px}.cover-inner{min-height:94vh;padding:60px 28px}
+  .cover h1{font-size:54px}.cover p{font-size:20px}
+  .album{padding:10px 8px 20px}.page{min-height:calc(100vh - 125px)}
+  .page-inner{min-height:calc(100vh - 125px);padding:28px 24px}
+  .opening,.two-col,.postcard-body{grid-template-columns:1fr;gap:25px}
+  .photo-frame.large{height:43vh;order:0}.opening-copy{order:1}.photo-frame.small{grid-column:auto;order:2;height:180px}
+  .chapter h2{font-size:52px}.wide{height:30vh}
+  .tall{height:43vh}.polaroid-grid{grid-template-columns:1fr;gap:18px}
+  .polaroid{max-width:270px;margin:auto}.polaroid .photo-frame{height:210px}
+  .postcard-photo{height:34vh}.postcard-lines{font-size:20px}
+  .overlay-copy{left:8%;right:8%;bottom:7%}.overlay-copy h2{font-size:56px}
+  .navigation{grid-template-columns:1fr 1fr;gap:8px}.dots{display:none}
+  .nav-btn{width:100%;font-size:10px}
+  .music-btn{width:36px;height:36px}
+}
+@media(max-height:650px) and (max-width:700px){
+  .page-inner{padding-top:20px;padding-bottom:20px}
+  .photo-frame.large{height:34vh}.tall{height:34vh}
+  .opening-copy h2,.chapter h2,.two-col h2{margin:10px 0;font-size:42px}
+  .opening-copy p,.chapter p,.two-col p{font-size:18px}
+}
+
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+
+  <main>
+    <section class="cover screen active" id="cover">
+      <div class="cover-inner">
+        <div class="small-label">ÁLBUM FOTOGRÁFICO</div>
+        <div class="spark">✦</div>
+        <h1>NUESTRA<br>PRIMERA<br>AVENTURA</h1>
+        <p>Un pequeño recuerdo de un día que quiero guardar.</p>
+        <button class="primary-btn" id="openAlbum">ABRIR EL ÁLBUM</button>
+        <div class="music-note">♪ The Door · Teddy Swims</div>
+      </div>
+    </section>
+
+    <section class="album hidden" id="album">
+      <header class="topbar">
+        <div class="book-title">MY ADVENTURE BOOK</div>
+        <div class="counter"><span id="pageNumber">1</span> / 8</div>
+        <button class="music-btn" id="musicBtn" aria-label="Activar o pausar música">♪</button>
+      </header>
+
+      <div class="pages">
+
+        <article class="page active" data-page="1">
+          <div class="page-inner opening">
+            <div class="photo-frame large">
+              <img src="assets/photos/01.jpg" alt="Foto principal" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+              <span>FOTO PRINCIPAL</span>
+            </div>
+            <div class="opening-copy">
+              <div class="tiny-label">RECUERDO · 01</div>
+              <h2>El comienzo</h2>
+              <p>Hay aventuras que empiezan sin saber cuánto van a significar.</p>
+              <div class="rule"></div>
+              <p class="hand">Un día, una conversación y un recuerdo para guardar.</p>
+            </div>
+            <div class="photo-frame small tilt">
+              <img src="assets/photos/02.jpg" alt="Foto" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+              <span>OTRA FOTO</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="page" data-page="2">
+          <div class="page-inner chapter">
+            <div class="chapter-label">CAPÍTULO I</div>
+            <h2>EL DÍA<br>QUE EMPEZÓ<br>LA AVENTURA</h2>
+            <div class="ornament">• ───── ✦ ───── •</div>
+            <p>Una fecha, un lugar y dos personas descubriendo qué historia podía salir de ahí.</p>
+            <div class="date-line">FECHA &nbsp; ____ / ____ / ______</div>
+            <div class="photo-frame wide">
+              <img src="assets/photos/03.jpg" alt="Primera parada" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+              <span>FOTO DEL LUGAR</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="page" data-page="3">
+          <div class="page-inner two-col">
+            <div>
+              <div class="tiny-label">PRIMERA PARADA</div>
+              <h2>Donde<br>todo tomó<br>forma</h2>
+              <p>Hay lugares que se vuelven especiales simplemente porque fueron parte de un buen momento.</p>
+              <p class="quote">“Aquí comenzó una parte de nuestra historia.”</p>
+            </div>
+            <div class="photo-frame tall">
+              <img src="assets/photos/04.jpg" alt="Foto del lugar" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+              <span>FOTO</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="page" data-page="4">
+          <div class="page-inner">
+            <div class="tiny-label">PEQUEÑOS MOMENTOS</div>
+            <h2>Las cosas simples<br>también cuentan.</h2>
+            <div class="polaroid-grid">
+              <div class="polaroid rotate-left">
+                <div class="photo-frame"><img src="assets/photos/05.jpg" alt="Momento 1" onerror="this.style.display='none'; this.parentElement.classList.add('empty')"><span>FOTO</span></div>
+                <p>Un momento.</p>
+              </div>
+              <div class="polaroid">
+                <div class="photo-frame"><img src="assets/photos/06.jpg" alt="Momento 2" onerror="this.style.display='none'; this.parentElement.classList.add('empty')"><span>FOTO</span></div>
+                <p>Una risa.</p>
+              </div>
+              <div class="polaroid rotate-right">
+                <div class="photo-frame"><img src="assets/photos/07.jpg" alt="Momento 3" onerror="this.style.display='none'; this.parentElement.classList.add('empty')"><span>FOTO</span></div>
+                <p>Un recuerdo.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="page" data-page="5">
+          <div class="page-inner two-col">
+            <div class="photo-frame tall">
+              <img src="assets/photos/08.jpg" alt="Foto especial" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+              <span>FOTO</span>
+            </div>
+            <div>
+              <div class="tiny-label">LO QUE ME LLEVO</div>
+              <h2>Una buena<br>historia para<br>recordar</h2>
+              <p>No hace falta que pase algo extraordinario para que un día termine convirtiéndose en un buen recuerdo.</p>
+              <div class="stamp">MEMORIA<br>GUARDADA</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="page" data-page="6">
+          <div class="page-inner postcard">
+            <div class="postcard-head">
+              <span>POSTALES DE LA AVENTURA</span>
+              <span>♥</span>
+            </div>
+            <div class="postcard-body">
+              <div class="photo-frame postcard-photo empty">
+                <span>AQUÍ VA TU FOTO</span>
+              </div>
+              <div class="postcard-lines">
+                <p>Querida memoria:</p>
+                <p>Este día merece quedarse por aquí un rato.</p>
+                <div class="lines"></div>
+                <p class="signature">— Nosotros, por ahora.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="page" data-page="7">
+          <div class="page-inner final-photo">
+            <div class="photo-frame cinematic empty">
+              <span>FOTO FAVORITA</span>
+            </div>
+            <div class="overlay-copy">
+              <div class="tiny-label">UNA ÚLTIMA PÁGINA</div>
+              <h2>Y esto recién<br>comienza.</h2>
+              <p>Algunas historias no necesitan tener todo escrito desde el principio.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="page" data-page="8">
+          <div class="page-inner closing">
+            <div class="tiny-label">GRACIAS POR LA AVENTURA</div>
+            <div class="spark big">✦</div>
+            <h2>Gracias por la aventura<br>y las risas, Karyn.</h2>
+            <p class="closing-sub">Espero que sea la primera de muchas buenas historias.</p>
+            <div class="signature-line"></div>
+            <div class="signature">Con cariño,<br><span>R.</span></div>
+            <div class="qr-placeholder">
+              <div class="qr-box">QR</div>
+              <small>ESCANEA PARA VOLVER AL ÁLBUM</small>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="navigation">
+        <button id="prevBtn" class="nav-btn">← ANTERIOR</button>
+        <div class="dots" id="dots"></div>
+        <button id="nextBtn" class="nav-btn">SIGUIENTE →</button>
+      </div>
+      <div class="swipe-hint">Desliza para continuar</div>
+    </section>
+  </main>
+
+  <audio id="bgMusic" loop preload="none">
+    <source src="assets/audio/the-door-teddy-swims.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+const cover = document.getElementById("cover");
+const album = document.getElementById("album");
+const pages = [...document.querySelectorAll(".page")];
+const pageNumber = document.getElementById("pageNumber");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const dots = document.getElementById("dots");
+const musicBtn = document.getElementById("musicBtn");
+const bgMusic = document.getElementById("bgMusic");
+const openAlbum = document.getElementById("openAlbum");
+
+let current = 0;
+let touchStartX = 0;
+let touchStartY = 0;
+
+pages.forEach((_, i) => {
+  const d = document.createElement("span");
+  d.className = "dot";
+  d.addEventListener("click", () => showPage(i));
+  dots.appendChild(d);
+});
+
+function showPage(index) {
+  current = Math.max(0, Math.min(index, pages.length - 1));
+  pages.forEach((p, i) => {
+    const active = i === current;
+    p.classList.toggle("active", active);
+    p.style.display = active ? "block" : "none";
+  });
+  pageNumber.textContent = current + 1;
+  [...dots.children].forEach((d, i) => d.classList.toggle("active", i === current));
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === pages.length - 1;
+  prevBtn.style.opacity = current === 0 ? ".45" : "1";
+  nextBtn.style.opacity = current === pages.length - 1 ? ".45" : "1";
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function nextPage(){ if(current < pages.length - 1) showPage(current + 1); }
+function prevPage(){ if(current > 0) showPage(current - 1); }
+
+openAlbum.addEventListener("click", async () => {
+  cover.classList.add("hidden");
+  cover.style.display = "none";
+  album.classList.remove("hidden");
+  album.style.display = "block";
+  showPage(0);
+  try {
+    await bgMusic.play();
+    musicBtn.textContent = "❚❚";
+  } catch(e) {
+    musicBtn.textContent = "♪";
+  }
+});
+
+nextBtn.addEventListener("click", nextPage);
+prevBtn.addEventListener("click", prevPage);
+
+musicBtn.addEventListener("click", async () => {
+  if (bgMusic.paused) {
+    try { await bgMusic.play(); musicBtn.textContent = "❚❚"; }
+    catch(e) {}
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "♪";
+  }
+});
+
+document.addEventListener("keydown", e => {
+  if (album.classList.contains("hidden")) return;
+  if (e.key === "ArrowRight") nextPage();
+  if (e.key === "ArrowLeft") prevPage();
+});
+
+album.addEventListener("touchstart", e => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, {passive:true});
+
+album.addEventListener("touchend", e => {
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  const dy = e.changedTouches[0].screenY - touchStartY;
+  if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) {
+    if (dx < 0) nextPage();
+    else prevPage();
+  }
+}, {passive:true});
+
+showPage(0);
+
+</script>
+</body>
+</html>
