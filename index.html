@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nuestra primera aventura</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#19140f;font-family:Arial,Helvetica,sans-serif;color:#241b13;overflow:hidden}button{font:inherit}
+:root{--paper:#e8d5ad;--ink:#241b13;--accent:#a56b36}
+.app{height:100dvh;width:100%;display:flex;align-items:center;justify-content:center;background:#201810}
+.book{width:min(100vw,1200px);height:min(100dvh,720px);position:relative;overflow:hidden;background:#e8d5ad;box-shadow:0 18px 60px #0008}
+.page{position:absolute;inset:0;display:none;background:#e8d5ad center/cover no-repeat}
+.page.active{display:block;animation:turn .38s ease}
+@keyframes turn{from{opacity:.2;transform:scale(.985)}to{opacity:1;transform:none}}
+.cover{background-image:url('assets/template/slide-02.jpg')}
+.coverShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,10,5,.08),rgba(20,10,5,.08));}
+.coverContent{position:absolute;left:25%;right:7%;top:18%;bottom:12%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#f3dfb9;text-shadow:0 2px 5px #0009}
+.coverTitle{font-family:Georgia,serif;font-size:clamp(44px,7vw,88px);line-height:.86;text-transform:uppercase;letter-spacing:.03em;margin:0 0 28px}
+.coverSub{font-family:Georgia,serif;font-size:clamp(16px,2.1vw,25px);max-width:620px}
+.btn{border:0;padding:14px 24px;margin-top:28px;background:#e8d3a5;color:#2d2015;font-weight:800;letter-spacing:.12em;cursor:pointer;box-shadow:0 7px 18px #0005;transition:.2s}.btn:hover{transform:translateY(-2px)}
+.musicLabel{margin-top:18px;font-size:11px;letter-spacing:.12em;opacity:.82}
+.template{background-image:var(--bg)}
+.overlay{position:absolute;inset:0;pointer-events:none}.overlay>*{pointer-events:auto}
+.paperCover{position:absolute;background:rgba(232,213,173,.98);box-shadow:0 2px 5px #0002}
+.photo{position:absolute;object-fit:cover;display:block;border:7px solid #f5edda;box-shadow:0 7px 14px #0005;background:#d8c394;transition:transform .25s}
+.photo:hover{transform:scale(1.015) rotate(0deg)!important;z-index:5}
+.note{position:absolute;font-family:"Comic Sans MS",cursive;font-size:clamp(13px,1.7vw,20px);line-height:1.15;max-width:280px;color:#3c2b1c}
+.heading{position:absolute;font-family:Georgia,serif;font-weight:700;text-transform:uppercase;line-height:.9;color:#17110d}
+.small{font-size:12px;letter-spacing:.14em;font-weight:700}.centerText{position:absolute;text-align:center;font-family:Georgia,serif;color:#3b291a}
+.nav{position:absolute;z-index:30;left:0;right:0;bottom:0;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(transparent,rgba(18,12,7,.72));color:white}
+.nav button{border:1px solid #fff7;background:#24180dcc;color:#fff;padding:9px 13px;cursor:pointer}.nav button:disabled{opacity:.3}.count{font-size:12px;letter-spacing:.1em}
+.music{position:absolute;right:12px;top:12px;z-index:40;width:40px;height:40px;border:0;border-radius:50%;background:#ead7af;color:#352619;box-shadow:0 3px 10px #0005;cursor:pointer}
+.startHint{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#fff9;font-size:10px;letter-spacing:.08em}
+@media(max-width:700px){.book{width:100vw;height:100dvh;box-shadow:none}.coverContent{left:19%;right:5%;top:12%;bottom:10%}.coverTitle{font-size:clamp(34px,10vw,64px)}.coverSub{font-size:16px}.btn{padding:12px 17px;font-size:12px}.nav{padding-bottom:max(10px,env(safe-area-inset-bottom))}.photo{border-width:5px}.note{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="app"><main class="book" id="book">
+<section class="page active cover" id="cover"><div class="coverShade"></div><div class="coverContent"><div class="small">ÁLBUM FOTOGRÁFICO</div><h1 class="coverTitle">NUESTRA<br>PRIMERA<br>AVENTURA</h1><div class="coverSub">Un pequeño recuerdo de un día que quiero guardar.</div><button class="btn" id="open">ABRIR EL ÁLBUM</button><div class="musicLabel">♪ The Door · Teddy Swims</div></div></section>
+
+<section class="page template" style="--bg:url('assets/template/slide-01.jpg')"><div class="overlay">
+  <img class="photo" style="left:13.2%;top:5.5%;width:30%;height:31%;transform:rotate(-1deg)" src="assets/photos/01.jpg" onerror="this.style.visibility='hidden'">
+  <img class="photo" style="left:44.7%;top:5.5%;width:28%;height:31%;transform:rotate(1deg)" src="assets/photos/02.jpg" onerror="this.style.visibility='hidden'">
+  <div class="note" style="left:10%;top:63%;width:33%">Un día que empezó sencillo y terminó convirtiéndose en un recuerdo especial.</div>
+  <div class="note" style="left:43%;top:63%;width:34%">Primera aventura. Primera historia para guardar.</div>
+  <div class="centerText" style="right:4%;top:10%;width:15%;font-size:14px">✈<br>RECUERDO<br>01</div>
+</div></section>
+
+<section class="page template" style="--bg:url('assets/template/slide-03.jpg')"><div class="overlay">
+  <img class="photo" style="left:36%;top:8%;width:28%;height:74%;transform:rotate(-.6deg)" src="assets/photos/03.jpg" onerror="this.style.visibility='hidden'">
+  <div class="centerText" style="left:33%;width:34%;bottom:7%;font-size:12px">UNA PRIMERA PARADA · UN BUEN RECUERDO</div>
+</div></section>
+
+<section class="page template" style="--bg:url('assets/template/slide-04.jpg')"><div class="overlay">
+  <div class="paperCover" style="left:8%;top:9%;width:35%;height:32%"></div><img class="photo" style="left:9.5%;top:10.5%;width:32%;height:29%;transform:rotate(-1deg)" src="assets/photos/04.jpg" onerror="this.style.visibility='hidden'">
+  <div class="paperCover" style="right:7%;top:10%;width:29%;height:31%"></div><img class="photo" style="right:8.5%;top:11.5%;width:26%;height:28%;transform:rotate(1deg)" src="assets/photos/05.jpg" onerror="this.style.visibility='hidden'">
+  <div class="note" style="left:10%;bottom:14%;width:35%">Pequeños momentos que hacen que un día cualquiera se vuelva diferente.</div>
+  <div class="note" style="right:8%;bottom:14%;width:29%">Una foto, una sonrisa y algo para recordar.</div>
+</div></section>
+
+<section class="page template" style="--bg:url('assets/template/slide-05.jpg')"><div class="overlay">
+  <div class="paperCover" style="left:9%;top:8%;width:28%;height:72%"></div><img class="photo" style="left:11%;top:11%;width:24%;height:65%;transform:rotate(-2deg)" src="assets/photos/06.jpg" onerror="this.style.visibility='hidden'">
+  <div class="paperCover" style="right:10%;top:8%;width:28%;height:44%"></div><img class="photo" style="right:12%;top:11%;width:24%;height:38%;transform:rotate(2deg)" src="assets/photos/07.jpg" onerror="this.style.visibility='hidden'">
+  <div class="note" style="left:40%;top:18%;width:23%">Una aventura también está hecha de detalles.</div>
+  <div class="note" style="left:40%;bottom:13%;width:30%">Y de esos pequeños instantes que uno no planea, pero termina recordando.</div>
+</div></section>
+
+<section class="page template" style="--bg:url('assets/template/slide-06.jpg')"><div class="overlay">
+  <div class="paperCover" style="left:7%;top:8%;width:38%;height:44%"></div><img class="photo" style="left:9%;top:10%;width:34%;height:40%;transform:rotate(-1deg)" src="assets/photos/08.jpg" onerror="this.style.visibility='hidden'">
+  <div class="note" style="left:11%;bottom:13%;width:33%">POSTALES DE LA AVENTURA<br><br>Guardar momentos también es una forma de viajar otra vez.</div>
+  <div class="centerText" style="right:9%;bottom:16%;width:28%;font-size:18px">✦<br>UNA BUENA HISTORIA<br>EMPIEZA CON UN BUEN DÍA</div>
+</div></section>
+
+<section class="page template" style="--bg:url('assets/template/slide-07.jpg')"><div class="overlay">
+  <div class="heading" style="left:24%;top:28%;width:52%;font-size:clamp(38px,7vw,80px);text-align:center">COSAS QUE<br>ME LLEVO<br>DE ESTE DÍA</div>
+  <div class="note" style="left:16%;bottom:12%;width:25%">Una buena conversación.</div><div class="note" style="left:39%;bottom:12%;width:25%">Muchas risas.</div><div class="note" style="left:62%;bottom:12%;width:24%">Un bonito recuerdo.</div>
+</div></section>
+
+<section class="page template" style="--bg:url('assets/template/slide-08.jpg')"><div class="overlay">
+  <div class="paperCover" style="left:39%;top:8%;width:25%;height:76%"></div><img class="photo" style="left:41%;top:10%;width:21%;height:72%;transform:rotate(.4deg)" src="assets/photos/09.jpg" onerror="this.style.visibility='hidden'">
+  <div class="centerText" style="left:28%;right:28%;bottom:6%;font-size:13px">UNA ÚLTIMA FOTO ANTES DE CERRAR EL ÁLBUM</div>
+</div></section>
+
+<section class="page template" style="--bg:url('assets/template/slide-09.jpg')"><div class="overlay">
+  <div class="paperCover" style="left:8%;top:15%;width:36%;height:46%"></div><img class="photo" style="left:10%;top:17%;width:32%;height:42%;transform:rotate(-2deg)" src="assets/photos/10.jpg" onerror="this.style.visibility='hidden'">
+  <div class="paperCover" style="left:53%;top:15%;width:35%;height:48%"></div><img class="photo" style="left:55%;top:17%;width:31%;height:44%;transform:rotate(2deg)" src="assets/photos/11.jpg" onerror="this.style.visibility='hidden'">
+  <div class="centerText" style="left:28%;right:28%;bottom:9%;font-size:17px">ALGUNOS MOMENTOS MERECEN<br>SU PROPIA PÁGINA.</div>
+</div></section>
+
+<section class="page template" style="--bg:url('assets/template/slide-10.jpg')"><div class="overlay">
+  <div class="paperCover" style="left:8%;top:8%;width:45%;height:48%"></div><img class="photo" style="left:10%;top:10%;width:41%;height:44%;transform:rotate(-1deg)" src="assets/photos/12.jpg" onerror="this.style.visibility='hidden'">
+  <div class="centerText" style="right:7%;top:25%;width:37%;font-family:Georgia,serif;font-size:clamp(18px,2.5vw,30px);line-height:1.12;text-align:left">Gracias por la aventura y las risas, Karyn.<br><br><i style="font-size:.78em">Espero que sea la primera de muchas buenas historias.</i></div>
+  <div class="centerText" style="right:10%;bottom:9%;width:30%;font-size:11px;letter-spacing:.08em">ESCANEA EL QR PARA GUARDAR EL ÁLBUM</div>
+</div></section>
+
+<div class="nav" id="nav" style="display:none"><button id="prev">← ANTERIOR</button><div class="count"><span id="n">1</span> / 10</div><button id="next">SIGUIENTE →</button></div>
+<button class="music" id="music" style="display:none">♪</button>
+<audio id="audio" preload="none" loop src="assets/audio/the-door-teddy-swims.mp3"></audio>
+</main></div>
+<script>
+const pages=[...document.querySelectorAll('.page')];let i=0;let started=false;const nav=document.getElementById('nav');const n=document.getElementById('n');const audio=document.getElementById('audio');const music=document.getElementById('music');
+function show(k){i=Math.max(0,Math.min(pages.length-1,k));pages.forEach((p,j)=>p.classList.toggle('active',j===i));n.textContent=i;document.getElementById('prev').disabled=i===1;document.getElementById('next').disabled=i===pages.length-1}
+function start(){if(started)return;started=true;show(1);nav.style.display='flex';music.style.display='block';audio.play().then(()=>music.textContent='❚❚').catch(()=>music.textContent='♪')}
+document.getElementById('open').addEventListener('click',start);document.getElementById('next').addEventListener('click',()=>show(i+1));document.getElementById('prev').addEventListener('click',()=>show(i-1));music.addEventListener('click',()=>{if(audio.paused){audio.play().then(()=>music.textContent='❚❚')}else{audio.pause();music.textContent='♪'}});
+document.addEventListener('keydown',e=>{if(!started)return;if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1)});
+let sx=0;document.getElementById('book').addEventListener('touchstart',e=>sx=e.changedTouches[0].clientX,{passive:true});document.getElementById('book').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)show(i+(dx<0?1:-1))},{passive:true});
+</script></body></html>
